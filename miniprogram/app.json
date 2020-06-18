@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/list/list",
+    "pages/set/set",
+    "pages/edit/edit",
+    "pages/ceshi/ceshi",
+    "pages/ranking/ranking"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarTitleText": "",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#FAE8B6"
+  },
+  "tabBar": {
+    "color": "#7a7a7a",
+    "selectedColor": "#007aff",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/start.png",
+        "selectedIconPath": "images/start-red.png"
+      },
+      {
+        "pagePath": "pages/list/list",
+        "text": "创建决定",
+        "iconPath": "images/create.png",
+        "selectedIconPath": "images/create-red.png"
+      },
+      {
+        "pagePath": "pages/set/set",
+        "text": "设置",
+        "iconPath": "images/set.png",
+        "selectedIconPath": "images/set-red.png"
+      },
+      {
+        "pagePath": "pages/ranking/ranking",
+        "text": "排行榜",
+        "iconPath": "images/ranking.png",
+        "selectedIconPath": "images/ranking-red.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}
