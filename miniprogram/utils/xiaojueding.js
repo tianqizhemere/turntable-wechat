@@ -1,6 +1,6 @@
 module.exports = [
    {
-      id: 2,
+      id: -1,
       option: '默认数据',
       awards: [
          {

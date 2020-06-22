@@ -31,13 +31,13 @@ Component({
     },
 
     musicflg: {
-      type: Boolean, // 转盘声音开关，默认true
-      value: true
+      type: Boolean, // 转盘声音开关，默认false
+      value: false
     },
 
     fastJuedin: {
-      type: Boolean, // 快速转动转盘的开关，默认false
-      value: false
+      type: Boolean, // 快速转动转盘的开关，默认true
+      value: true
     },
 
     repeat: {
@@ -124,9 +124,9 @@ Component({
   // 组件生命周期函数，在组件实例进入页面节点树时执行
   attached: function () {
     console.log('==========attached==========');
-    start.src = 'https://gamesdata.oss-cn-hangzhou.aliyuncs.com/xiaojueding/start.mp3'; // 转盘开始转动的音乐
-    mid.src = 'https://gamesdata.oss-cn-hangzhou.aliyuncs.com/xiaojueding/mid.mp3';     // 快速决定时，转盘开始转动的音乐
-    stop.src = 'https://gamesdata.oss-cn-hangzhou.aliyuncs.com/xiaojueding/stop.mp3';   // 转盘停止转动的音乐
+    start.src = '/static/music/start.mp3'; // 转盘开始转动的音乐
+    mid.src = '/static/music/mid.mp3';     // 快速决定时，转盘开始转动的音乐
+    stop.src = '/static/music/stop.mp3';   // 转盘停止转动的音乐
 
     this.setData({
       awardsConfig: this.data.zhuanpanArr[0]
@@ -161,19 +161,16 @@ Component({
         awardsConfig.awards[g].item2Deg = g * i + 90 - i / 2 + "deg";//当前下标 * 360/长度 + 90 - 360/长度/2
         awardsConfig.awards[g].afterDeg = r + "deg";
       }
-
       that.setData({
         turnNum: e, // 页面的单位是turn
         awardsConfig: awardsConfig,
       })
-
       that._change();//向父组件传出当前转盘的初始数据
     },
 
     //重置转盘
     reset() {
       var that = this, awardsConfig = that.data.awardsConfig;
-      console.log(awardsConfig);
       var animation = wx.createAnimation({
         duration: 1,
         timingFunction: "linear"
@@ -258,7 +255,8 @@ Component({
       /*=============不重复抽取=============*/
 
 
-      console.log('当前答案选项的下标==', r);
+      console.log('当前答案选项的下标==', r)
+     
       setTimeout(function () {
 
         //转盘开始转动音乐
@@ -302,7 +300,8 @@ Component({
 
         that.setData({
           animationData: {},
-          s_awards: awardsConfig.awards[r].name,//最终选中的结果
+          s_awards: awardsConfig.awards[r].name,//最终选中的结果 转盘子选择名称
+          s_awards_id: awardsConfig.awards[r].id, // 转盘子选择id
           awardsConfig: awardsConfig,
           block1: 'none',
           block2: 'none',
@@ -325,7 +324,7 @@ Component({
       for (let i in awards) {
         if (awards[i].probability != 0) {
           for (var x = 0; x < awards[i].probability; x++) {
-            //把当前的概率数字 以当前选项下标的形式 都添加都空数组中，然后随机这个数组
+            //  把当前的概率数字 以当前选项下标的形式 都添加都空数组中，然后随机这个数组
             arr.push(i);
           }
         }
@@ -361,7 +360,6 @@ Component({
         }
       }
     },
-
     //初始化数据时向外传的参
     _change() {
       this.triggerEvent('myData', this.data.awardsConfig);// 向父组件传出当前决定的数组数据
@@ -371,7 +369,7 @@ Component({
     _myAwards(e) {
       this.triggerEvent('myAwards',
         {
-          s_awards: this.data.s_awards, end: e
+          s_awards: this.data.s_awards, end: e, s_awards_id: this.data.s_awards_id
         });
     },
 

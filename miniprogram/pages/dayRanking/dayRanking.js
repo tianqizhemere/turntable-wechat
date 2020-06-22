@@ -45,15 +45,15 @@ Page({
   },
   onShow: function () {
     console.log('=========onShow============');
-    // 发送异步请求
-    call.getData('/ranking/list', this.shuffleSuc, this.fail);
+    // 获取当天抽取数据
+    call.getData('/ranking/day', this.successDay, this.fail);
   },
-  // 异步成功调用函数
-  shuffleSuc: function(data) {
+  successDay: function(data) {
     var that = this;
     that.setData({
       xiaojueding: data.data
     })
+    console.log(data.data);
   },
    // 异步请求失败调用
   fail: function () {

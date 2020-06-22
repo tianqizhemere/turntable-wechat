@@ -50,19 +50,33 @@ Page({
 
    //删除
    personalQToDelete(e) {
-      var that = this, index = e.currentTarget.dataset.index, myJuedin = wx.getStorageSync('myJuedin');
-     call.paramPost("/turntable/delete",
-       {
-         id: this.data.xiaojueding[index].id
-       }, this.delSuccess, this.fail)
-       this.onShow();
+      var that = this, index = e.currentTarget.dataset.index, myJuedin = that.data.xiaojueding;
+      for (let i in myJuedin) { 
+         if (i == index) {
+            call.paramPost("/turntable/delete",
+            {
+               id: myJuedin[i].id
+            }, this.delSuccess, this.fail)
+            break;
+         }
+      }
    },
-  delSuccess:function(){
-    wx.showToast({
-      title: '删除成功',
-      icon: 'success',
-      mask: false
-    })
+   // 加载数据
+   getData(){
+       call.getData('/turntable/treeList', this.shuffleSuc, this.fail);
+   },
+  delSuccess:function(data){
+   var self = this;
+   if(data.code == "20000") {
+     wx.showToast({
+       title: '删除成功',
+       icon: 'success',
+       mask: false,
+       success: function () {
+         self.getData();
+       }
+     })
+   }
   },
    //热门、个人小决定
    tabSwitch(e) {
@@ -86,11 +100,11 @@ Page({
 
    //个人编辑
    personalQToRevise(e) {
-      var that = this, myJuedin = wx.getStorageSync('myJuedin'), index = e.currentTarget.dataset.index;
+      var that = this, myJuedin = that.data.xiaojueding, index = e.currentTarget.dataset.index;
       for (let i in myJuedin) {
          if (i == index) {
             wx.navigateTo({
-               url: '../edit/edit?item=' + JSON.stringify(myJuedin[i])
+               url: '../edit/edit?flg=1&item=' + JSON.stringify(myJuedin[i])
             })
             return;
          }
@@ -155,42 +169,49 @@ Page({
       })
    },
 
-   //个人决定的标题
+   /**
+    * 个人决定的标题
+    * @param {*} e 
+    */
    personalQToRun(e) {
       var that = this, id = e.currentTarget.dataset.id;
-      app.globalData.myJueding = true;
+      app.globalData.defaultJueding = true;
       wx.setStorageSync('switchTab', id);
       wx.switchTab({
          url: '../index/index'
       })
    },
-    onLoad: function(){
+   onLoad: function(){
       console.log('=========onLoad============');
-    },
+   },
    onShow: function () {
       console.log('=========onShow============');
-      call.getData('/turntable/treeList', this.shuffleSuc, this.fail);
+      this.getData();
       var that = this, myJuedin = wx.getStorageSync('myJuedin');     
       app.globalData.defaultJueding = false, app.globalData.myJueding = false;
-
       //创建的个人小决定
       if (!util.isNull(myJuedin)) {
          that.setData({
             myxiaojueding: myJuedin
          })
       }
-
       wx.removeStorageSync('switchTab')
   },
-  // 异步请求成功调用
+  /**
+   * 异步请求成功调用
+   * @param {*} data 响应结果集
+   */
   shuffleSuc: function (data) {
     var that = this;
     console.log(data);
     that.setData({
-      xiaojueding: data.data
+      xiaojueding: data.data,
+      myxiaojueding: data.data
     })
   },
-  // 异步请求失败调用
+  /**
+   * 异步请求失败调用
+   */
   fail: function () {
     wx.showToast({
       title: '服务器繁忙',
