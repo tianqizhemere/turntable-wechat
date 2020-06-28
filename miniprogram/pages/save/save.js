@@ -127,31 +127,15 @@ Page({
             })
             return;
          }
-
-         if (util.isNull(myJuedin)) {
-            app.globalData.myJueding = true;
-            arr.push(default_input_answer_list);
-            // 发送异步请求
-            call.request('/turntable/add', default_input_answer_list,this.shuffleSuc, this.fail);
-            wx.setStorageSync('myJuedin', arr);
-            wx.setStorageSync('switchTab', default_input_answer_list.id);
-            all.push(default_input_answer_list);
-            wx.setStorageSync('all', all);
-            wx.setStorageSync('num', wx.getStorageSync('num') + 1);
-            return;
-         }
-         
-      
          app.globalData.myJueding = true;
          wx.setStorageSync('switchTab', default_input_answer_list.id);
-         myJuedin.push(default_input_answer_list);
+         // myJuedin.push(default_input_answer_list);
          wx.setStorageSync('myJuedin', myJuedin);
          all.push(default_input_answer_list);
          // 发送异步请求
          call.request('/turntable/add', default_input_answer_list, this.shuffleSuc, this.fail);
          wx.setStorageSync('all', all);
          wx.setStorageSync('num', wx.getStorageSync('num') + 1);
-         
       }
    },
 

@@ -5,6 +5,7 @@
     "pages/set/set",
     "pages/edit/edit",
     "pages/ceshi/ceshi",
+    "pages/dayRanking/dayRanking",
     "pages/ranking/ranking"
   ],
   "window": {
@@ -40,10 +41,16 @@
         "selectedIconPath": "images/set-red.png"
       },
       {
+        "pagePath": "pages/dayRanking/dayRanking",
+        "text": "每日抽取",
+        "iconPath": "images/plan.png",
+        "selectedIconPath": "images/plan-red.png"
+      },
+      {
         "pagePath": "pages/ranking/ranking",
-        "text": "排行榜",
-        "iconPath": "images/ranking.png",
-        "selectedIconPath": "images/ranking-red.png"
+        "text": "总排行榜",
+        "iconPath": "images/Ranking.png",
+        "selectedIconPath": "images/Ranking-red.png"
       }
     ]
   },

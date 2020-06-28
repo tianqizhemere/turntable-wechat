@@ -1,4 +1,4 @@
-/* pages/list/list.wxss */
+/* pages/day-ranking/day-ranking.wxss */
 page {
     width: 100%;
     background-color: #efefef;
@@ -141,7 +141,6 @@ page {
     height: 100%;
 }
 
-
 @keyframes icon_rotate {
     0% {
         transform: rotate(0deg);
@@ -197,7 +196,7 @@ button::after {
     justify-content: flex-start;
     width: calc(100% - 35px);
     height: 40px;
-    color: #007aff;
+    color: #000000;
     font-size: 12px;
 }
 

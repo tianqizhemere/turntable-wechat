@@ -161,10 +161,15 @@ Page({
             })
             return;
          }
-
-        
          // 发送异步请求
          call.request('/turntable/edit', default_input_answer_list, this.shuffleSuc, this.fail);     
+         app.globalData.myJueding = true;
+         wx.setStorageSync('switchTab', default_input_answer_list.id);
+         // myJuedin.push(default_input_answer_list);
+         wx.setStorageSync('myJuedin', myJuedin);
+         all.push(default_input_answer_list);
+         wx.setStorageSync('all', all);
+         wx.setStorageSync('num', wx.getStorageSync('num') + 1);
       }
    },
 

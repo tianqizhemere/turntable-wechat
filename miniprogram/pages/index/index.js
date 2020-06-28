@@ -44,11 +44,8 @@ var page = {
       ],
       fontArr: ['italic', 'oblique', 'normal'],
       sizeArr: [12, 14, 16, 18, 20, 22, 24, 26, 28],
-
-      eweimaUrl: '../../images/erweima.jpg',
-
+      eweimaUrl: '/images/erweima.jpg',
       shengchengUrl: '',
-
       saveFrameFlag: false,
 
    },
@@ -61,12 +58,10 @@ var page = {
    },
    onLoad: function() {
       console.log('=========onload============');
-      
    },
     // 异步成功调取
     shuffleSuc: function(data) {
       var that = this;
-      console.log(data);
       that.setData({
         xiaojuedingArr: data.data
       })
@@ -96,19 +91,19 @@ var page = {
          share: e.detail.end ? true : false,
       })
       // 保存排行榜
-      if(this.data.s_awards != "？") {
-        console.log(e.detail.s_awards)
-        console.log(this.data.awardsConfig.id)
-        // 发送异步请求
-        call.request('/ranking/add', 
-        {
-          "awardsName": e.detail.s_awards, 
-            "titleId": this.data.awardsConfig.id
-        }
-        , this.rankingSucceed, this.fail);
+      if(!e.detail.end) {
+         if(this.data.id != -1) {
+            // 发送异步请求
+            call.request('/ranking/add', 
+            {
+              "awardsName": e.detail.s_awards, 
+                "awardsId": e.detail.s_awards_id
+            }
+            , this.rankingSucceed, this.fail);
+            return;
+          }
       }
    },
-
    //开始转
    startZhuan(e) {
       this.setData({
@@ -119,7 +114,6 @@ var page = {
    //点击切换转盘选项
    xiaojueding(e) {
       var that = this, idx = e.currentTarget.dataset.idx, xiaojuedingArr = that.data.xiaojuedingArr;
-      
       if (!that.data.zhuanflg) {
          for (let x in xiaojuedingArr) {
             if (idx == x && xiaojuedingArr[x].option != that.data.awardsConfig.option) {
@@ -136,8 +130,7 @@ var page = {
       call.getData('/turntable/treeList', this.shuffleSuc, this.fail);
       this.zhuanpan = this.selectComponent("#zhuanpan");
       var that = this, switchTab = wx.getStorageSync('switchTab'), all = wx.getStorageSync('all'), xiaojuedingArr = that.data.xiaojuedingArr;
-
-      //判断从热门小决定 还是个人小决定跳转过来的 还是编辑页面跳过来的
+      
       all = app.globalData.defaultJueding ? xiaojuedingArr : app.globalData.myJueding ? all : xiaojuedingArr;
       
       that.setData({
@@ -148,7 +141,6 @@ var page = {
       
       //跳转过来的
       if (!util.isNull(switchTab)) {
-         
          wx.showLoading({
             title: '加载中',
          })
@@ -335,8 +327,5 @@ var page = {
       var index = Math.floor((Math.random() * array.length + 1) - 1);
       return array[index];
    },
-
-
-
 }
 Page(page);
