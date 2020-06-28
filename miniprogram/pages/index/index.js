@@ -16,9 +16,9 @@ var page = {
          w:599,
          h:600
       },
-      musicflg: true,
-      fastJuedin: false,
-      repeat: false,
+      musicflg: false,
+      fastJuedin: true,
+      repeat: true,
       xiaojuedingArr: xiaojuedingArr.sort(randomsort),
       s_awards: '？',//结果
 

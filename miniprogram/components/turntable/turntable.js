@@ -41,8 +41,8 @@ Component({
     },
 
     repeat: {
-      type: Boolean, // 重复抽取开关，默认false
-      value: false
+      type: Boolean, // 重复抽取开关，默认true
+      value: true
     },
 
     size: {
@@ -108,7 +108,7 @@ Component({
   data: {
     animationData: {}, // 转盘动画
     zhuanflg: false,   // 转盘是否可以点击切换的标志位
-    fastTime: 7600,    // 转盘快速转动的时间
+    fastTime: 4500,    // 转盘快速转动的时间
     slowTime: 3900,    // 转盘慢速转动的时间
     block1: 'block',   // 转盘中心的图片标志位，用来显示隐藏
     block2: 'none',

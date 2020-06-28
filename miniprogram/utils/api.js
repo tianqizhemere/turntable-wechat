@@ -1,6 +1,6 @@
 var app = getApp();
 //项目URL相同部分，减轻代码量，同时方便项目迁移
-var host = 'https://tianqizhemere.top';
+var host = 'https://tianqizhemere.top/turntable';
 //var host = 'http://127.0.0.1:18081';
 
 /**

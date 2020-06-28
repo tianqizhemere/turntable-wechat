@@ -44,5 +44,7 @@ App({
     heighestScore: 0,
     systemInfo: null,
     zhuan: 0,
+    repeat: true,
+    fastJuedin: true,
   }
 })

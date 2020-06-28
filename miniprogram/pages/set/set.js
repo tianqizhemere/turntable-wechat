@@ -7,7 +7,7 @@ Page({
    data: {
       custom_sound_default: false,
       custom_fast_select_default: true,
-      custom_no_repetition_select_default: false,
+      custom_no_repetition_select_default: true,
       gdhw: [ //更多好玩的参数设置死的
          { 
             

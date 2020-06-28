@@ -1,18 +1,22 @@
 <!--pages/dayRanking/dayRanking.wxml-->
 <view class="container">
    <view class="question_list_box">
+
       <!-- 热门小决定 -->
       <view class="official_question_list_box" style="display:{{tab_index=='2'?'block':'none'}};">
          <view class="official_question_list_cell question_list_cell" wx:for="{{xiaojueding}}" wx:key="unique">
-            <view bindtap="officialQToRun" class="official_question question" data-id="{{item.titleId}}" data-index="{{index}}">{{item.option}}</view>
+            <view bindtap="officialQToRun" class="official_question question" data-id="{{item.titleId}}" data-index="{{index}}">
+               <image class="question_btn_icon_title" mode="scaleToFill" src="/images/sunrise.png"/>
+               {{item.option}}
+            </view>
             <view bindtap="officialQToControl" class="official_question_control_box question_control_box" data-index="{{index}}">
                <image class="question_control" mode="scaleToFill" src="{{index==item.num?'/images/icon_list_close_60.png':'/images/icon_list_open_60.png'}}"></image>
             </view>
 
             <!-- 遍历总排行榜数据-->
-             <view wx:for="{{item.list}}" wx:for-item="awards" wx:key="id"  class="official_question_btn_box question_btn_box" style="display:{{awards.index==item.num?'flex':'none'}};">
+             <view wx:for="{{item.list}}" wx:for-item="awards" wx:key="id"  class="official_question_btn_box question_btn_box" style="display:{{awards.index!=item.num?'flex':'none'}};">
                <button bindtap="officialQToRun" class="question_btn_cell_left btn_boder_right" data-id="{{item.id}}" data-index="{{index}}" hoverClass="none">
-                  <image class="question_btn_icon" mode="scaleToFill" src="/images/devicename.png"></image>
+                  <image class="question_btn_icon" mode="scaleToFill" src="/images/like-blue.png"></image>
                   <view class="question_btn_title">名称</view>
                </button>
                <button bindtap="officialQToRevise" class="question_btn_cell_center btn_boder_right" data-index="{{index}}" hoverClass="none">

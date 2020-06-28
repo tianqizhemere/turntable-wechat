@@ -28,8 +28,8 @@
    </view>
 
    <!-- 转盘中间的按钮 -->
-   <image bindtap="_zhuan" src='https://gamesdata.oss-cn-hangzhou.aliyuncs.com/xiaojueding/canvas_button_go_unclick.png' style='width:{{size.h/4.4}}rpx;position:absolute;left:41%;top:38%;margin-top:-11rpx;z-index:9999;display:{{block1}}' mode='widthFix'></image>
-   <image src='https://gamesdata.oss-cn-hangzhou.aliyuncs.com/xiaojueding/canvas_button_go_click.png' style='width:{{size.h/4.4}}rpx;position:absolute;left:41%;top:38%;margin-top:-11rpx;z-index:9999;display:{{block2}}' mode='widthFix'></image>
-   <image bindtap="reset" src='https://gamesdata.oss-cn-hangzhou.aliyuncs.com/xiaojueding/canvas_button_reset_unclick.png' style='width:{{size.h/4.4}}rpx;left:41%;top:38%;position: absolute;margin-top:-11rpx;z-index:9999;display:{{block3}}' mode='widthFix'></image>
-   <image src='https://gamesdata.oss-cn-hangzhou.aliyuncs.com/xiaojueding/canvas_button_reset_click.png' style='width:{{size.h/4.4}}rpx;position:absolute;left:41%;top:38%;margin-top:-11rpx;z-index:9999;display:{{block4}}' mode='widthFix'></image>
+   <image bindtap="_zhuan" src='/images/canvas_button_go_unclick.png' style='width:{{size.h/4.4}}rpx;position:absolute;left:41%;top:38%;margin-top:-11rpx;z-index:9999;display:{{block1}}' mode='widthFix'></image>
+   <image src='/images/canvas_button_go_click.png' style='width:{{size.h/4.4}}rpx;position:absolute;left:41%;top:38%;margin-top:-11rpx;z-index:9999;display:{{block2}}' mode='widthFix'></image>
+   <image bindtap="reset" src='/images/canvas_button_reset_unclick.png' style='width:{{size.h/4.4}}rpx;left:41%;top:38%;position: absolute;margin-top:-11rpx;z-index:9999;display:{{block3}}' mode='widthFix'></image>
+   <image src='/images/canvas_button_reset_click.png' style='width:{{size.h/4.4}}rpx;position:absolute;left:41%;top:38%;margin-top:-11rpx;z-index:9999;display:{{block4}}' mode='widthFix'></image>
 </view>
